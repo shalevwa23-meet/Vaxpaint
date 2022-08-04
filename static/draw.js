@@ -76,13 +76,13 @@ document.getElementById('save').addEventListener("click", function(){
 	console.log(en(JSON.stringify(saved[cur_img].data)))
 	console.log(en(JSON.stringify(saved[cur_img].data)).length)
 
-	pic_info.set('data', en(JSON.stringify(saved[cur_img].data)));
-	// alert(saved[cur_img].data.length)
-	pic_info.set('height', saved[cur_img].height);
-	pic_info.set('width',saved[cur_img].width);
-	const XHR = new XMLHttpRequest();
-	XHR.open('POST', window.location.href);
-	XHR.send(pic_info);
+	// pic_info.set('data', en(JSON.stringify(saved[cur_img].data)));
+	// // alert(saved[cur_img].data.length)
+	// pic_info.set('height', saved[cur_img].height);
+	// pic_info.set('width',saved[cur_img].width);
+	// const XHR = new XMLHttpRequest();
+	// XHR.open('POST', window.location.href);
+	// XHR.send(pic_info);
 })
 
 

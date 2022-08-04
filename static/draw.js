@@ -72,7 +72,10 @@ document.getElementById('save').addEventListener("click", function(){
 	save();
 	console.log(saved[cur_img].data)
 	console.log(JSON.stringtify(saved[cur_img].data))
+	console.log(JSON.stringtify(saved[cur_img].data).length)
 	console.log(en(JSON.stringify(saved[cur_img].data)))
+	console.log(en(JSON.stringify(saved[cur_img].data)).length)
+
 	pic_info.set('data', en(JSON.stringify(saved[cur_img].data)));
 	// alert(saved[cur_img].data.length)
 	pic_info.set('height', saved[cur_img].height);

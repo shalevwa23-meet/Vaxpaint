@@ -70,7 +70,7 @@ function save()
 
 document.getElementById('save').addEventListener("click", function(){
 	save();
-	pic_info.set('data', en(JSON.stringify(saved[cur_img].data));
+	pic_info.set('data', en(JSON.stringify(saved[cur_img].data)));
 	// alert(saved[cur_img].data.length)
 	pic_info.set('height', saved[cur_img].height);
 	pic_info.set('width',saved[cur_img].width);

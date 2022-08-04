@@ -1,1 +1,1 @@
-'web: gunicorn app:vaxpaint' 
+web: gunicorn app:app

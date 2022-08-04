@@ -1,6 +1,10 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext("2d");
 
+function en(c){var x='charCodeAt',b,e={},f=c.split(""),d=[],a=f[0],g=256;for(b=1;b<f.length;b++)c=f[b],null!=e[a+c]?a+=c:(d.push(1<a.length?e[a]:a[x](0)),e[a+c]=g,g++,a=c);d.push(1<a.length?e[a]:a[x](0));for(b=0;b<d.length;b++)d[b]=String.fromCharCode(d[b]);return d.join("")}
+
+function de(b){var a,e={},d=b.split(""),c=f=d[0],g=[c],h=o=256;for(b=1;b<d.length;b++)a=d[b].charCodeAt(0),a=h>a?d[b]:e[a]?e[a]:f+c,g.push(a),c=a.charAt(0),e[o]=f+c,o++,f=a;return g.join("")}
+
 var prev = document.getElementsByClassName('prev');
 if(prev.length>0)
 {
@@ -28,13 +32,8 @@ function undo()
 {
 	if(cur_img >= 0)
 	{
-		console.log(cur_img)
-		console.log(saved)
-		console.log(saved[cur_img-1])
-		// console.log(saved[cur_img-1].data);
 		ctx.putImageData(saved[cur_img-1], 0, 0);
 		cur_img--;
-		// console.log(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
 	}
 }
 
@@ -43,10 +42,8 @@ function redo()
 
 	if(cur_img < saved.length-1)
 	{
-		// console.log(saved[cur_img-1].data);
 		ctx.putImageData(saved[cur_img+1], 0, 0);
 		cur_img++;
-		// console.log(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
 	}
 }
 
@@ -73,7 +70,7 @@ function save()
 
 document.getElementById('save').addEventListener("click", function(){
 	save();
-	pic_info.set('data', saved[cur_img].data);
+	pic_info.set('data', JSON.stringify(saved[cur_img].data));
 	// alert(saved[cur_img].data.length)
 	pic_info.set('height', saved[cur_img].height);
 	pic_info.set('width',saved[cur_img].width);

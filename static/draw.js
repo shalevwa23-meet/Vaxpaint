@@ -113,6 +113,7 @@ document.getElementById('size').addEventListener("change", function(){
 	if(document.getElementById(color).value=='')
 	{
 		document.getElementById(color).value=0;
+		change_rgb();
 	}
 })
 

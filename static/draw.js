@@ -1,6 +1,5 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext("2d");
-
 function en(c){var x='charCodeAt',b,e={},f=c.split(""),d=[],a=f[0],g=256;for(b=1;b<f.length;b++)c=f[b],null!=e[a+c]?a+=c:(d.push(1<a.length?e[a]:a[x](0)),e[a+c]=g,g++,a=c);d.push(1<a.length?e[a]:a[x](0));for(b=0;b<d.length;b++)d[b]=String.fromCharCode(d[b]);return d.join("")}
 
 function de(b){var a,e={},d=b.split(""),c=f=d[0],g=[c],h=o=256;for(b=1;b<d.length;b++)a=d[b].charCodeAt(0),a=h>a?d[b]:e[a]?e[a]:f+c,g.push(a),c=a.charAt(0),e[o]=f+c,o++,f=a;return g.join("")}
@@ -13,8 +12,17 @@ if(prev.length>0)
 	c.width = c.dataset.width;
 	c.height = c.dataset.height;
 	var n = ctx.getImageData(0,0,c.dataset.width,c.dataset.height);
-	data_arr = c.dataset.data.split(',')
-	n.data.set(data_arr);
+	impdata = JSON.parse(c.dataset.data)
+	for(let i = 0; i<n.data.length;i+=4)
+	{
+		if(i in impdata)
+		{
+			for(let j = 0; j<4;j++)
+			{
+				n.data[i+j] = impdata[i][j]
+			}
+		}
+	}
 	ctx.putImageData(n, 0, 0);
 }
 
@@ -70,14 +78,27 @@ function save()
 
 document.getElementById('save').addEventListener("click", function(){
 	save();
-	// console.log(saved[cur_img].data)
-	// console.log(JSON.stringtify(saved[cur_img].data))
-	// console.log(JSON.stringtify(saved[cur_img].data).length)
-	// console.log(en(JSON.stringify(saved[cur_img].data)))
-	// console.log(en(JSON.stringify(saved[cur_img].data)).length)
 
-	pic_info.set('data', saved[cur_img].data);
-	// alert(saved[cur_img].data.length)
+	pixels = saved[cur_img].data;
+	impixels = {};
+
+	for(let i = 0; i<pixels.length; i+=4)
+	{
+		is_zero = true;
+		for(let j = 0; j<4; j++)
+		{
+			if(pixels[i+j] != 0)
+			{
+				is_zero = false;
+			}
+		}
+
+		if(!is_zero)
+		{
+			impixels[i] = [pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]];
+		}
+	}
+	pic_info.set('data', JSON.stringify(impixels));
 	pic_info.set('height', saved[cur_img].height);
 	pic_info.set('width',saved[cur_img].width);
 	const XHR = new XMLHttpRequest();

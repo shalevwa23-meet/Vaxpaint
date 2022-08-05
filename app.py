@@ -92,7 +92,7 @@ def sign_out():
 
 @app.route('/quit')
 def quit():
-	time.sleep(1)
+	time.sleep(2)
 	return redirect(url_for('home'))
 #Code goes above here
 if __name__ == '__main__':

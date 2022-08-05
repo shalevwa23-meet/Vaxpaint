@@ -106,14 +106,22 @@ document.getElementById('save').addEventListener("click", function(){
 	XHR.send(pic_info);
 })
 
+function change_rgb()
+{
+	var r = parseInt(document.getElementById('R').value)
+	var g = parseInt(document.getElementById('G').value)
+	var b = parseInt(document.getElementById('B').value)
 
+	document.getElementById('color_example').style.backgroundColor = "rgb("+r+","+g+","+b+")";
+	ctx.strokeStyle = "rgb("+r+","+g+","+b+")";
+
+}
 
 document.getElementById('size').addEventListener("change", function(){
 
 	if(document.getElementById(color).value=='')
 	{
 		document.getElementById(color).value=0;
-		change_rgb();
 	}
 })
 
@@ -126,22 +134,15 @@ document.getElementById('size').addEventListener("input", function(){
 	ctx.lineWidth = size;
 
 })
-function change_rgb()
-{
-	var r = parseInt(document.getElementById('R').value)
-	var g = parseInt(document.getElementById('G').value)
-	var b = parseInt(document.getElementById('B').value)
 
-	document.getElementById('color_example').style.backgroundColor = "rgb("+r+","+g+","+b+")";
-	ctx.strokeStyle = "rgb("+r+","+g+","+b+")";
-
-}
 for(let color of ['R','G','B']){
 document.getElementById(color).addEventListener("change", function(){
 
 	if(document.getElementById(color).value=='')
 	{
 		document.getElementById(color).value=0;
+		change_rgb();
+
 	}
 })
 

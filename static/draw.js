@@ -125,7 +125,16 @@ document.getElementById('size').addEventListener("input", function(){
 	ctx.lineWidth = size;
 
 })
+function change_rgb()
+{
+	var r = parseInt(document.getElementById('R').value)
+	var g = parseInt(document.getElementById('G').value)
+	var b = parseInt(document.getElementById('B').value)
 
+	document.getElementById('color_example').style.backgroundColor = "rgb("+r+","+g+","+b+")";
+	ctx.strokeStyle = "rgb("+r+","+g+","+b+")";
+
+}
 for(let color of ['R','G','B']){
 document.getElementById(color).addEventListener("change", function(){
 
@@ -134,15 +143,11 @@ document.getElementById(color).addEventListener("change", function(){
 		document.getElementById(color).value=0;
 	}
 })
+
+
 document.getElementById(color).addEventListener("input", function(){
 
-	var r = parseInt(document.getElementById('R').value)
-	var g = parseInt(document.getElementById('G').value)
-	var b = parseInt(document.getElementById('B').value)
-
-	document.getElementById('color_example').style.backgroundColor = "rgb("+r+","+g+","+b+")";
-	ctx.strokeStyle = "rgb("+r+","+g+","+b+")";
-
+	change_rgb();
 })
 }
 canvas.addEventListener("mousemove", function(event){
